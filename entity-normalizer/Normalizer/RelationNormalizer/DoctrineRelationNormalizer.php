@@ -74,7 +74,7 @@ class DoctrineRelationNormalizer implements NormalizerInterface
         foreach ($relations as $relationName) {
             $relationEntity = $meta->getFieldValue($object, $relationName);
             if ($relationEntity instanceof Collection) {
-                $relationNormalizations[$relationName] = $this->collectionNormalizer->normalize($object, $format, $mergedContext);
+                $relationNormalizations[$relationName] = $this->collectionNormalizer->normalize($relationEntity, $format, $mergedContext);
             } else {
                 $relationNormalizations[$relationName] = match ($this->getRelationNormalizeMode($mergedContext[self::RELATION_NORMALIZE_MODE])) {
                     RelationNormalizeMode::IGNORED => null,
